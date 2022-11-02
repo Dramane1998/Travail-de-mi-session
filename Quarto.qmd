@@ -1,0 +1,94 @@
+---
+  title: "Rapport avec QUARTO"
+author: "Abdoul Dramane TONDE"
+date: "`r Sys.Date()`"
+format:
+  pdf: default
+html: default
+---
+
+## Importer des données a partir du WEB
+
+```{r}
+Barometre <- read.csv(file = "C:/Users/15145/Downloads/sondage-echo-donnees-2020 (1).csv", fileEncoding = "Latin1")
+head(Barometre)
+```
+
+## Travail sur des données ouvertes disponibles au Québec
+
+URL pour telecharger les données
+
+```{r}
+data_URL <- "https://www.donneesquebec.ca/recherche/dataset/vmtl-sondage-inclusion-personnes-immigrantes/resource/88bb6a18-54fa-4789-82e8-14888a933a4a"
+
+```
+
+## Télechargement des données
+
+Telechargemet du dossier sil nexiste pas.
+
+```{r}
+scaffold.R<- paste0('raw-data_', Sys.Date(), '.csv')
+#Le ! a été ajouté pour signifié NOT comme dans:
+# Si (le fichier n'existe PAS) {
+#    Exécuter cette parti de code
+#    } sinon {
+#    Exécuter cette partie de code
+#    }
+if (!file.exists(scaffold.R)) {
+  download.file(url = data_URL,
+                destfile = scaffold.R) 
+  paste("Le fichier",
+        scaffold.R,
+        "n'existait pas, il a donc été téléchargé à l'instant."
+  )
+  
+} else {
+  print(paste("Le fichier",
+              scaffold.R,
+              "existe déjà, il ne sera pas téléchargé à nouveau.")
+  )
+}
+```
+
+## Exploration
+
+```{r}
+dim(Barometre)
+summary(Barometre)
+
+```
+
+Determination des porcentages respectifs pour chacune des categories a la question de sexe
+
+```{r}
+df<- data.frame(table(Barometre$sexe))
+colnames(df)<- c('sexe','freq')
+Pourcentage<- df$freq/sum(df$freq)*100
+Pourcentage
+table(Barometre$sexe)
+```
+
+## Exportation de données
+
+Voici l'exportation des données .csv dans le fichier data/processed
+
+```{r}
+write.table(Barometre$date, "exported data.csv" , row.names = FALSE , sep = ";")
+
+```
+
+## Dictionnaire de données\*\*
+
+```{r}
+frequency(Barometre$sexe)
+
+```
+
+## Visualisation
+
+## Reference
+
+```{r}
+sessionInfo()
+```
