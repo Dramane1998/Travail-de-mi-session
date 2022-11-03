@@ -40,6 +40,9 @@ dim(Barometre)
 
 summary(Barometre)
 
+is.numeric(Barometre)
+plot(Barometre$sexe,col="red",pch = 16)
+
 
 frequency(Barometre$sexe)
 

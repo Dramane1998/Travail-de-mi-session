@@ -56,7 +56,8 @@ if (!file.exists(scaffold.R)) {
 ```{r}
 dim(Barometre)
 summary(Barometre)
-
+is.numeric(Barometre)
+plot(Barometre$sexe,col="red",pch = 16)
 ```
 
 Determination des porcentages respectifs pour chacune des categories a la question de sexe

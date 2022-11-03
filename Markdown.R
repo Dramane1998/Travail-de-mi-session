@@ -22,7 +22,7 @@ summary(Barometre)
 # Graphique
 
 ```{r}
-plot(Barometre$sexe)
+plot(Barometre$sexe,col="red",pch = 16)
 ```
 
 L'aide pour le mot 'plot' est trouvée dans les packages suivants :
