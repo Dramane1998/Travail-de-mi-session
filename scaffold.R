@@ -49,6 +49,8 @@ Pourcentage<- df$freq/sum(df$freq)*100
 Pourcentage
 table(Barometre$sexe)
 
+table(Barometre$NAISS)
+
 write.table(Barometre$date, "exported data.csv" , row.names = FALSE , sep = ";")
 
 sessionInfo()

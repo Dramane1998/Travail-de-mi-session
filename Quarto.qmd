@@ -69,6 +69,12 @@ Pourcentage
 table(Barometre$sexe)
 ```
 
+il ya plus de gens qui sont nés au canada(1252) qua lexterieur du pays(1251)
+
+```{r}
+table(Barometre$NAISS)
+```
+
 ## Exportation de données
 
 Voici l'exportation des données .csv dans le fichier data/processed
